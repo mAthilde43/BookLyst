@@ -21,7 +21,7 @@ const RegisterPage = () => {
       const response = await fetch("http://localhost:3000/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, id_role: 1 }), //role par défaut : utilisateur
       });
       const data = await response.json();
       console.log(data);
