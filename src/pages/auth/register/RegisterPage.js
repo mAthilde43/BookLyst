@@ -41,7 +41,7 @@ const RegisterPage = () => {
           les fonctionnalités du site.
         </h2>
         <p>Vous avez déjà compte ?</p>
-        <Link to="/auth/login" className={classes.loginBtn}>
+        <Link to="" className={classes.loginBtn}>
           Connectez-vous
         </Link>
       </div>
