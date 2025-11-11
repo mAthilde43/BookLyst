@@ -6,6 +6,9 @@ const authRoutes = require("./routes/authRoutes");
 const livreRoutes = require("./routes/livreRoutes");
 const empruntRoutes = require("./routes/empruntRoutes");
 const favorisRoutes = require("./routes/favorisRoutes");
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
