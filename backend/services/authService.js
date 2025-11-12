@@ -33,7 +33,14 @@ const login = async (email, password) => {
     { expiresIn: "8h" }
   );
 
-  return { token, user };
+  const { password: pwd, Role, ...userData } = user.toJSON(); // on récupère Role aussi
+
+  const userWithRole = {
+    ...userData,
+    id_role: Role?.id_role || user.id_role, // Role est là
+  };
+
+  return { token, user: userWithRole };
 };
 
 module.exports = { register, login };

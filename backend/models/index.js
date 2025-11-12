@@ -47,16 +47,23 @@ Livre.belongsToMany(User, {
   otherKey: "id_user",
 });
 
-User.belongsToMany(Livre, {
-  through: Emprunt,
-  foreignKey: "id_user",
-  otherKey: "id_livre",
-});
-Livre.belongsToMany(User, {
-  through: Emprunt,
-  foreignKey: "id_livre",
-  otherKey: "id_user",
-});
+// User.belongsToMany(Livre, {
+//   through: Emprunt,
+//   foreignKey: "id_user",
+//   otherKey: "id_livre",
+// });
+// Livre.belongsToMany(User, {
+//   through: Emprunt,
+//   foreignKey: "id_livre",
+//   otherKey: "id_user",
+// });
+// Un User peut avoir plusieurs Emprunts
+User.hasMany(Emprunt, { foreignKey: "id_user" });
+Emprunt.belongsTo(User, { foreignKey: "id_user" });
+
+// Un Livre peut avoir plusieurs Emprunts
+Livre.hasMany(Emprunt, { foreignKey: "id_livre" });
+Emprunt.belongsTo(Livre, { foreignKey: "id_livre" });
 
 Favoris.belongsTo(User, { foreignKey: "id_user" });
 Favoris.belongsTo(Livre, { foreignKey: "id_livre" });

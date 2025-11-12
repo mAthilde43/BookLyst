@@ -6,7 +6,13 @@ const authRoutes = require("./routes/authRoutes");
 const livreRoutes = require("./routes/livreRoutes");
 const empruntRoutes = require("./routes/empruntRoutes");
 const favorisRoutes = require("./routes/favorisRoutes");
+const userRoutes = require("./routes/userRoutes");
 const cors = require("cors");
+
+app.use((req, res, next) => {
+  console.log("🔹 Requête reçue :", req.method, req.url);
+  next();
+});
 
 app.use(cors());
 
@@ -17,6 +23,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/livres", livreRoutes);
 app.use("/api/emprunts", empruntRoutes);
 app.use("/api/favoris", favorisRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend en marche !");
