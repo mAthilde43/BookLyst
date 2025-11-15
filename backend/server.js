@@ -7,6 +7,10 @@ const livreRoutes = require("./routes/livreRoutes");
 const empruntRoutes = require("./routes/empruntRoutes");
 const favorisRoutes = require("./routes/favorisRoutes");
 const userRoutes = require("./routes/userRoutes");
+const themeRoutes = require("./routes/themeRoutes");
+const auteurRoutes = require("./routes/auteurRoutes");
+const path = require("path");
+
 const cors = require("cors");
 
 app.use((req, res, next) => {
@@ -17,13 +21,15 @@ app.use((req, res, next) => {
 app.use(cors());
 
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
+app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/livres", livreRoutes);
 app.use("/api/emprunts", empruntRoutes);
 app.use("/api/favoris", favorisRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/themes", themeRoutes);
+app.use("/api/auteurs", auteurRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend en marche !");

@@ -23,7 +23,7 @@ const Livre = sequelize.define("Livre", {
     defaultValue: true,
   },
   image_url: {
-    type: DataTypes.STRING, //url de l'image
+    type: DataTypes.STRING,
     allowNull: true,
   },
 });

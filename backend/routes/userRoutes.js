@@ -6,5 +6,6 @@ const { getAllUsers } = require("../controllers/userController");
 
 router.get("/me", authMiddleware, userController.getCurrentUser);
 router.get("/", getAllUsers);
+router.put("/me", authMiddleware, userController.updateCurrentUser);
 
 module.exports = router;

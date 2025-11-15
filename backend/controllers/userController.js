@@ -34,4 +34,30 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { getCurrentUser, getAllUsers };
+const updateCurrentUser = async (req, res) => {
+  try {
+    const { nom, prenom, telephone } = req.body;
+
+    const user = await userRepository.findById(req.user.id_user);
+    if (!user)
+      return res.status(404).json({ message: "Utilisateur non trouvé" });
+
+    // Mise à jour
+    user.nom = nom ?? user.nom;
+    user.prenom = prenom ?? user.prenom;
+    user.telephone = telephone ?? user.telephone;
+
+    await user.save();
+
+    const { password, ...updatedUser } = user.toJSON();
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
+
+module.exports = {
+  getCurrentUser,
+  getAllUsers,
+  updateCurrentUser,
+};
